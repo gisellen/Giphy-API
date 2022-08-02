@@ -23,7 +23,7 @@ export default function Random() {
 
   //functions
   async function getRandom() {
-    return await axios.get("/random").then((res) => {
+    return await axios.get(`${process.env.REACT_APP_GIPHY_API}/random`).then((res) => {
       return res.data.data;
     });
   }

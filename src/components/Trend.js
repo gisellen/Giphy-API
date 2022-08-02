@@ -36,7 +36,7 @@ export default function Trend() {
 
   async function getTrending(offset) { //calls api w/ offset for pagination
     return await axios
-    .get("/trending", { params: { offset: offset } })
+    .get(`${process.env.REACT_APP_GIPHY_API}/trending`, { params: { offset: offset } })
     .then((res) => {
       return res.data.data;
     });
