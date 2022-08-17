@@ -24,7 +24,7 @@ export default function Main() {
       <button className="button" onClick={() => dispatch(trending())}>
         Trending
       </button>
-      <button className="button" onClick={() => dispatch(random())}>
+      <button className="button random-button" onClick={() => dispatch(random())}>
         Random
       </button>
       <br />

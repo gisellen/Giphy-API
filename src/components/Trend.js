@@ -28,7 +28,7 @@ export default function Trend() {
   async function getTrending() { // calls api
     const offset = page * limit - limit;
     return await axios
-      .get("/trending", { params: { offset: offset } })
+      .get("${process.env.REACT_APP_GIPHY_API}/trending", { params: { offset: offset } })
       .then((res) => {
         return res.data.data;
       });
@@ -61,12 +61,14 @@ async function trendRequest() {
   if (isTrend === "trending") {
     return (
         <div>
+          <div className="pagination-bar">
           <p>page: {page}</p>
           <Pagination
             count={10}
             page={page}
             onChange={handleTrend}
           />
+          </div>
           <div className="gif-container">
             {gif.map((gif) => (
               <GifCard id={gif.id} url={gif.images.original.url} />

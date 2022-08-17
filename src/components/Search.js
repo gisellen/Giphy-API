@@ -24,7 +24,6 @@ export default function Search() {
     setSearch(value);
   }
 
-
   async function getSearch() {
     const offset = page * limit - limit;
     return await axios
@@ -41,7 +40,7 @@ export default function Search() {
 
   async function getSearch(offset) {
     return await axios
-      .get(`${process.env.REACT_APP_GIPHY_API}/search`, {
+      .get(`/search`, {
         params: {
           search: search,
           offset: offset,
@@ -61,34 +60,36 @@ export default function Search() {
     setGif(gifRequest);
   }
 
-  async function onSubmit() {
+  async function onSubmit(event) {
+    event.preventDefault();
     const gifRequest = await getSearch();
     setGif(gifRequest);
   }
 
   if (isSearch === "search") {
     return (
-      <div>
-        <form>
+      <div className="search-container">
+        <form  onSubmit={onSubmit}>
           <input
+            className="input-search"
             type="text"
             name="search"
-            placeholder="Gif Search"
+            placeholder="what are you looking for?"
             onChange={handleChange}
           />
         </form>
-        <button className="button" onClick={onSubmit}>
-          Submit
-        </button>
+        <input  className="button" type="submit" value="submit" onClick={onSubmit} />
         {gif.length > 0 ? (
-          <div>
+          <div className="pagination-bar">
             <p>page: {page}</p>
             <Pagination count={10} page={page} onChange={handlePage} />
           </div>
         ) : null}
+        <div className="gif-container">
         {gif.map((gif) => (
           <GifCard id={gif.id} url={gif.images.original.url} />
         ))}
+        </div>
       </div>
     );
   } else return <></>;
