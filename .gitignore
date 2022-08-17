@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 /server
+/giphy-api-backend
 
 # testing
 /coverage
