@@ -40,7 +40,7 @@ export default function Search() {
 
   async function getSearch(offset) {
     return await axios
-      .get(`/search`, {
+      .get(`${process.env.REACT_APP_GIPHY_API}/search`, {
         params: {
           search: search,
           offset: offset,
